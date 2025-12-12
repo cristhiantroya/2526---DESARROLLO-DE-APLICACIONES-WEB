@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #e6f0ff; /* Fondo más vistoso */
+}
+
+header, footer {
+    background-color: hsl(213, 84%, 47%);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 60%;
+    margin-top: 10px;
+    background-color: #ffffff; /* Fondo de la tabla */
+}
+
+table th {
+    background-color: hsl(213, 84%, 47%); /* Encabezado con color */
+    color: white;
+    padding: 10px;
+}
+
+table td {
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: center;
+    background-color: #f0f8ff; /* Color suave para las celdas */
+}
+

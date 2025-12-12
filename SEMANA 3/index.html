@@ -3,80 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deber semana 3</title>
+    <title>Deber Semana 3</title>
+    <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
-    <h1>Desarrollo de aplicaciones web</h1>
-    <h2>Tarea Semana 3</h2>
-    <h3>Bienvenidos</h3>
     <header>
-    <h1>Mi Web</h1>
-  </header>
-  </p>
-    <p>
-  La asignatura de <strong>Desarrollo de Aplicaciones Web</strong> 
-  nos enseña a <em>crear soluciones digitales modernas y eficientes</em>.
-</p>
+        <h1>Deber Semana 3</h1>
+        <nav>
+            <ul>
+        <a href="#productos">Productos</a> |
+        <a href="#tabla">Tabla de precios</a> |
+        <a href="#contacto">Contacto</a>
+            </ul>
+        </nav>
+    </header>
 
-  <nav>
-    <a href="#inicio">Inicio</a> | <a href="#articulo">Artículo</a>
-  </nav>
+    <main>
+        <section id="productos">
+            <h2>Venta de Celulares</h2>
+            <img src="assets/img/imagen1.jpg" alt="Celular en venta" width="300" height="200">
 
-  <main>
-    <section>
-      <h2>Seccion 1</h2>
-      <p>Contenido de la seccion 1 </p>
-      <h2>Seccion 1</h2>
-      <p>Contenido de la seccion 2 </p>
-  </main>
-  <table border="1">
-  <thead>
-    <tr>
-      <th>Asignatura</th>
-      <th>Descripción</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Matemáticas</td>
-      <td>Cálculo y álgebra básica</td>
-    </tr>
-    <tr>
-      <td>Programación</td>
-      <td>Uso de lenguajes como Python y Java</td>
-    </tr>
-    <tr>
-      <td>Desarrollo Web</td>
-      <td>HTML, CSS y JavaScript</td>
-    </tr>
-  </tbody>
-</table>
-<p>
-  Visita el sitio de 
-  <a href="https://www.uea.edu.ec/" target="_blank">Universidad Estatal Amazonica</a> 
-  para aprender más.
+            <article>
+                <h3>Bienvenido a nuestra tienda</h3>
+                <p>En esta página encontrarás <strong>celulares modernos</strong> y <em>accesibles</em> para todos los gustos.</p>
+                <p>Ofrecemos marcas reconocidas y modelos recientes con garantía.</p>
 
-<h3>Lista ordenada</h3>
-<ol>
-    <li>Elemento 1 </li>
-    <li>Elemento 2 </li>
-    <li>Elemento 3 </li>
-</ol>
+                
+                <h3>Marcas disponibles</h3>
+                <ul>
+                    <li>Samsung</li>
+                    <li>Apple</li>
+                    <li>Xiaomi</li>
+                    <li>Motorola</li>
+                    <video src="assets/video/video1.mp4" controls width="400" height="300"></video>
 
+                </ul>
 
-<h3>Lista desordenada</h3>
-<ul>
-    <li>Elemento 1 </li>
-    <li>Elemento 2 </li>
-    <li>Elemento 3 </li>
-</ul>
-<form action="/enviar" method="POST">
-<input type="text" name="nombre" placeholder="Tu nombre">
-<button type="submit">Enviar</button>
-</form>
-  <footer>
-    <p>© 2025</p>
-  </footer>
-    
+                
+                <h3>Pasos para comprar</h3>
+                <ol type="1">
+                    <li>Elige tu celular favorito.</li>
+                    <li>Agrega al carrito.</li>
+                    <li>Completa el formulario de compra.</li>
+                </ol>
+
+                
+                <p>Visita la página oficial de <a href="https://www.samsung.com" target="_blank">Samsung</a> para más información.</p>
+            </article>
+        </section>
+
+       
+        <section id="tabla">
+            <h2>Tabla de precios</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Samsung Galaxy S23</td>
+                        <td>$800</td>
+                    </tr>
+                    <tr>
+                        <td>iPhone 14</td>
+                        <td>$1000</td>
+                    </tr>
+                    <tr>
+                        <td>Xiaomi Redmi Note 12</td>
+                        <td>$300</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        
+        <section id="contacto">
+            <h2>Formulario de contacto</h2>
+            <form>
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre"><br><br>
+
+                <label for="correo">Correo:</label><br>
+                <input type="email" id="correo" name="correo"><br><br>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Tienda de Celulares - Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,28 @@
+/* Cambiar color del botón principal */
+.btn-primary {
+  background-color: #ff5733;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* Animación al pasar el mouse */
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Cards con sombra y bordes redondeados */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Media query personalizada */
+@media (max-width: 576px) {
+  body {
+    background-color: #f0f8ff; /* Cambia color en pantallas pequeñas */
+  }
+  h1 {
+    color: #ff5733;
+  }
+}

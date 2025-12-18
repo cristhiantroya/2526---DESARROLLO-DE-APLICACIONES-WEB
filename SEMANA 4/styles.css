@@ -26,3 +26,8 @@
     color: #ff5733;
   }
 }
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #e6f0ff; /* Fondo más vistoso */
+}

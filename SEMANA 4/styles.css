@@ -1,26 +1,28 @@
-/* Cambiar color del botón principal */
+h1{
+  color: #ff5733;
+}
 .btn-primary {
   background-color: #ff5733;
   border: none;
   transition: all 0.3s ease;
 }
 
-/* Animación al pasar el mouse */
+
 .btn-primary:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
-/* Cards con sombra y bordes redondeados */
+
 .card {
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-/* Media query personalizada */
+
 @media (max-width: 576px) {
   body {
-    background-color: #f0f8ff; /* Cambia color en pantallas pequeñas */
+    background-color: #f0f8ff; 
   }
   h1 {
     color: #ff5733;
@@ -29,5 +31,9 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    background-color: #e6f0ff; /* Fondo más vistoso */
+    background-color: #e6f0ff; 
+}
+footer{
+  color:orange;
+  background-color: rgb(0, 6, 6);
 }

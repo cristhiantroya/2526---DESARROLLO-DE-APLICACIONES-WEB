@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,90 +10,63 @@
     <h1>Formulario Semana 6</h1> 
     <main>
         <form action="" class="formulario" id="formulario">
-        <div class="formulario__grupo" id="grupo__usuario">
-<label for="usuario" class="formulario__label">Usuario</label>
-<div class="formulario__grupo-input">
-    <input type="text" class="formulario__input" name="usuario" id="usuario" placeholder="cristhian701">
-    </div>
-    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 digitos y solo puede contener letras</p>
-    </div>
 
-    <div class="formulario__grupo" id="grupo__nombre">
-<label for="nombre" class="formulario__label">Nombre</label>
-<div class="formulario__grupo-input">
-    <input type="text" class="formulario__input" name="nombre" id="nombre" placeholder="jhon Doe">
-    </div>
-    <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 digitos y solo puede contener letras</p>
-    </div>
+            <!-- Nombre -->
+            <div class="formulario__grupo" id="grupo__nombre">
+                <label for="nombre" class="formulario__label">Nombre</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="nombre" id="nombre" >
+                </div>
+                <p class="formulario__input-error">El nombre debe tener al menos 3 caracteres.</p>
+            </div>
+
+            <!-- Correo -->
+            <div class="formulario__grupo" id="grupo__correo">
+                <label for="correo" class="formulario__label">Correo Electrónico</label>
+                <div class="formulario__grupo-input">
+                    <input type="email" class="formulario__input" name="correo" id="correo" placeholder="ejemplo@correo.com" required>
+                </div>
+                <p class="formulario__input-error">Ingrese un correo válido (ejemplo@dominio.com).</p>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="formulario__grupo" id="grupo__password">
+                <label for="password" class="formulario__label">Contraseña</label>
+                <div class="formulario__grupo-input">
+                    <input type="password" class="formulario__input" name="password" id="password" required>
+                </div>
+                <p class="formulario__input-error">Debe tener mínimo 8 caracteres, un número y un carácter especial.</p>
+            </div>
+
+            <!-- Confirmar Contraseña -->
+            <div class="formulario__grupo" id="grupo__password2">
+                <label for="password2" class="formulario__label">Confirmar Contraseña</label>
+                <div class="formulario__grupo-input">
+                    <input type="password" class="formulario__input" name="password2" id="password2" required>
+                </div>
+                <p class="formulario__input-error">Ambas contraseñas deben coincidir.</p>
+            </div>
+
+            <!-- Edad -->
+            <div class="formulario__grupo" id="grupo__edad">
+                <label for="edad" class="formulario__label">Edad</label>
+                <div class="formulario__grupo-input">
+                    <input type="number" class="formulario__input" name="edad" id="edad" placeholder="18" required>
+                </div>
+                <p class="formulario__input-error">Debes ser mayor o igual a 18 años.</p>
+            </div>
 
 
-    <div class="formulario__grupo" id="grupo__password">
-<label for="pasword" class="formulario__label">Repita su Contraseña</label>
-<div class="formulario__grupo-input">
-    <input type="password" class="formulario__input" name="pasword" id="pasword">
-    </div>
-    <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 digitos</p>
-    </div>
-
-    <div class="formulario__grupo" id="grupo__password2">
-<label for="pasword2" class="formulario__label">Contraseña</label>
-<div class="formulario__grupo-input">
-    <input type="password" class="formulario__input" name="pasword2" id="pasword2">
-    </div>
-    <p class="formulario__input-error">Ambas contraseñas deben ser iguales</p>
-    </div>
-
-     <div class="formulario__grupo" id="grupo__correo">
-<label for="correo" class="formulario__label">Correo Electrónico</label>
-<div class="formulario__grupo-input">
-    <input type="email" class="formulario__input" name="correo" id="correo" placeholder="ejemplo@correo.com">
-    </div>
-    <p class="formulario__input-error">El correo solo puede contener numeros, letras , puntos y guión bajo.</p>
-    </div>
-
-     <div class="formulario__grupo" id="grupo__telefono">
-<label for="telefono" class="formulario__label">Teléfono</label>
-<div class="formulario__grupo-input">
-    <input type="text" class="formulario__input" name="telefono" id="telefono" placeholder="0936562482">
-    </div>
-    <p class="formulario__input-error">El teléfono solo puede contener números</p>
-    </div>
-    
-<div class="formulario__grupo" id="grupo__terminos">
-    <label class="formulario__label" >
-        <input class="formulario__checkbox" type="checkbox" name="terminos" id="terminos">
-        Acepto los Términos y Condiciones
-    </label>
-</div>
-<div class="formulario__mensaje" id="formulario__mensaje">
-  <p><b>⚠️ERROR:</b> Por favor rellena el formulario correctamente.</p>
+            <!-- Botones -->
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
+    <button type="submit" class="formulario__btn" id="btnEnviar" disabled>ENVIAR</button>
+    <button type="reset" class="formulario__btn">REINICIAR</button>
 </div>
 
+<p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!!!</p>
 
-<div class="formulario__grupo formulario__grupo-btn-enviar">
-    <button type="submit" class="formulario__btn">ENVIAR</button>
-    <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!!!</p>
-</div>
-
-    
+        </form>
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="script.js"></script>
-    
 </body>
 </html>

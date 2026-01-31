@@ -1,0 +1,44 @@
+
+body {
+    background-color: rgb(238, 147, 51);
+}
+h2 {
+  color: rgb(4, 4, 4);
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.custom-table {
+  background-color: rgb(255, 220, 180) !important;
+  border: 2px solid rgb(180, 90, 20) !important;  
+}
+
+.custom-table thead {
+  background-color: rgb(180, 90, 20) !important;   
+  color: white !important;                         
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: rgb(245, 190, 120) !important; 
+}
+
+.custom-table tbody tr:nth-child(odd) {
+  background-color: rgb(255, 220, 180) !important; 
+}
+
+
+footer {
+  font-size: 14px;
+}
+.carousel-item img {
+  max-height: 200px;     
+  width: auto;           
+  margin: 0 auto;        
+  object-fit: contain;   
+}
+#alertBtn {
+  display: block;
+  margin: 0 auto; 
+}
+

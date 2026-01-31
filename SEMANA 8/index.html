@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana 8</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Encabezado con navegación -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Mi Sitio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sección principal -->
+  <div class="container mt-4">
+
+    <!-- Carrusel -->
+    <div id="miCarrusel" class="carousel slide mb-4" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://comprasmartphone.com/_next/image?url=https%3A%2F%2Fstorage.comprasmartphone.com%2Fsmartphones%2Fsamsung-galaxy-s25-ultra.png&w=640&q=75" class="d-block w-100" alt="Imagen 1">
+        </div>
+        <div class="carousel-item">
+          <img src="https://tienda.movistar.com.ec/media/catalog/product/cache/d730591e49ae7d4a1adb9133c8cae915/i/p/iphone-17-pro-max-azul-doble-movistar_3.png" class="d-block w-100" alt="Imagen 2">
+        </div>
+        <div class="carousel-item">
+          <img src="https://comprasmartphone.com/_next/image?url=https%3A%2F%2Fstorage.comprasmartphone.com%2Fsmartphones%2Fxiaomi-17-pro-max.png&w=640&q=75" class="d-block w-100" alt="Imagen 3">
+        </div>
+         <div class="carousel-item">
+          <img src="https://www-file.honor.com/content/dam/honor/common/product-list/product-series/honor-400-pro/honor-400-pro-id-gary-back.png" class="d-block w-100" alt="Imagen 3">
+        </div>
+        <div class="carousel-item">
+          <img src="https://d13pvy8xd75yde.cloudfront.net/global/phones/camon/camon40/camon%2040%20pro/CM6%20B.png" class="d-block w-100" alt="Imagen 3">
+        </div>
+
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#miCarrusel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#miCarrusel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+
+    <!-- Tabla de productos -->
+    <h2 class="text-center mb-3">Lista de Productos</h2>
+    <table class="table table-striped table-bordered custom-table">
+      <thead class="table-dark"></thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Galaxy S25 Ultra</td>
+          <td>$1399</td>
+          <td>Disponible</td>
+        </tr>
+        <tr>
+          <td>iPhone 17 Pro Max</td>
+          <td>$1199 </td>
+          <td>Agotado</td>
+        </tr>
+        <tr>
+          <td>Xiaomi 17 Pro Max</td>
+          <td>$1500</td>
+          <td>Disponible</td>
+        </tr>
+         <tr>
+          <td>HONOR 400 Pro 5G </td>
+          <td>$950</td>
+          <td>Disponible</td>
+        </tr>
+         <tr>
+          <td> Tecno Camon 40 Pro  </td>
+          <td>$850</td>
+          <td>Disponible</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Formulario de contacto -->
+    <h2 class="text-center mt-4">Formulario de Contacto</h2>
+    <form id="contactForm" class="mb-4">
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" id="nombre" class="form-control" placeholder="Ingresa tu nombre">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Correo Electrónico</label>
+        <input type="email" id="correo" class="form-control" placeholder="Ingresa tu correo">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Mensaje</label>
+        <textarea id="mensaje" class="form-control" rows="3" placeholder="Escribe tu mensaje"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+    <!-- Botón de alerta -->
+    <button id="alertBtn" class="btn btn-warning">Mostrar Alerta</button>
+
+  </div>
+
+  <!-- Pie de página -->
+  <footer class="bg-dark text-white text-center p-3 mt-4">
+    <p>Contacto: cf.troyaj@uea.edu.ec | Redes: Facebook - Twitter - Instagram</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Script propio -->
+  <script src="script.js"></script>
+</body>
+</html>

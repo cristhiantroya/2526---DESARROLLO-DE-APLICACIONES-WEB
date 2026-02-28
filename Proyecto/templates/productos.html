@@ -1,12 +1,32 @@
 {% extends 'base.html' %}
 
-{% block title %}Productos{% endblock %}
+{% block title %}Inventario{% endblock %}
 
 {% block content %}
-<h2>Catálogo de Celulares</h2>
-<ul>
-    <li>iPhone 15 Pro</li>
-    <li>Samsung Galaxy S25</li>
-    <li>Xiaomi Mi 14</li>
-</ul>
+<h2>Inventario de Productos</h2>
+
+<!-- Formulario de búsqueda -->
+<form method="POST" action="{{ url_for('buscar') }}">
+    <input type="text" name="nombre" placeholder="Buscar producto por nombre">
+    <button type="submit">Buscar</button>
+</form>
+
+<table border="1">
+    <tr>
+        <th>ID</th><th>Nombre</th><th>Cantidad</th><th>Precio</th><th>Acciones</th>
+    </tr>
+    {% for producto in productos %}
+    <tr>
+        <td>{{ producto[0] }}</td>
+        <td>{{ producto[1] }}</td>
+        <td>{{ producto[2] }}</td>
+        <td>{{ producto[3] }}</td>
+        <td>
+            <a href="{{ url_for('eliminar', id=producto[0]) }}" class="btn btn-sm btn-warning">Eliminar</a> |
+            <a href="{{ url_for('actualizar', id=producto[0]) }}" class="btn btn-sm btn-danger">Actualizar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}
+

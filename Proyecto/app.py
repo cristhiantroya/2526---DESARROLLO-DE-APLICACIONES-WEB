@@ -1,6 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
+from form import ProductoForm
+from inventario.bd import crear_tablas, conectar
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'clave_secreta_segura'
+
+# Crear tablas al iniciar
+crear_tablas()
 
 @app.route('/')
 def inicio():
@@ -12,8 +18,77 @@ def about():
 
 @app.route('/productos')
 def productos():
-    return render_template('productos.html')
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM productos")
+    productos = cursor.fetchall()
+    conn.close()
+    return render_template('productos.html', productos=productos)
+
+@app.route('/agregar', methods=['GET', 'POST'])
+def agregar():
+    form = ProductoForm()
+    if form.validate_on_submit():
+        nombre = form.nombre.data
+        cantidad = form.cantidad.data
+        precio = form.precio.data
+
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO productos (nombre, cantidad, precio) VALUES (?, ?, ?)",
+                       (nombre, cantidad, precio))
+        conn.commit()
+        conn.close()
+
+        # Redirige al listado de productos
+        return redirect(url_for('productos'))
+
+    return render_template('producto_form.html', form=form)
+
+@app.route('/eliminar/<int:id>')
+def eliminar(id):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM productos WHERE id = ?", (id,))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('productos'))
+
+@app.route('/actualizar/<int:id>', methods=['GET', 'POST'])
+def actualizar(id):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM productos WHERE id = ?", (id,))
+    producto = cursor.fetchone()
+
+    form = ProductoForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        nueva_cantidad = form.cantidad.data
+        nuevo_precio = form.precio.data
+        cursor.execute("UPDATE productos SET cantidad = ?, precio = ? WHERE id = ?",
+                       (nueva_cantidad, nuevo_precio, id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('productos'))
+
+    conn.close()
+    return render_template('producto_form.html', form=form, producto=producto)
+
+
+
+
+@app.route('/buscar', methods=['POST'])
+def buscar():
+    nombre = request.form['nombre']
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM productos WHERE nombre LIKE ?", ('%' + nombre + '%',))
+    resultados = cursor.fetchall()
+    conn.close()
+    return render_template('productos.html', productos=resultados)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+

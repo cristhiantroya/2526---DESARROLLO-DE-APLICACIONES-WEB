@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %} Datos {% endblock %}
+
+{% block content %}
+<h2>Persistencia de Datos con TXT, JSON y CSV</h2>
+
+<form method="post" action="{{ url_for('datos') }}">
+
+    <div>
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre">
+    </div>
+
+    <div>
+        <label for="descripcion">Descripción</label>
+        <input type="text" name="descripcion" id="descripcion">
+    </div>
+
+    <div>
+        <label for="precio">Precio</label>
+        <input type="text" name="precio" id="precio">
+    </div>
+
+    <div>
+        <label for="cantidad">Cantidad</label>
+        <input type="text" name="cantidad" id="cantidad">
+    </div>
+
+    <button type="submit">Guardar</button>
+</form>
+
+<hr>
+
+<h3>TXT</h3>
+<ul>
+    {% for p in txt %}
+    <li>{{ p.nombre }} - {{ p.descripcion }} - Precio: {{ p.precio }} - Cantidad: {{ p.cantidad }}</li>
+    {% endfor %}
+</ul>
+
+<h3>JSON</h3>
+<ul>
+    {% for p in json %}
+    <li>{{ p.nombre }} - {{ p.descripcion }} - Precio: {{ p.precio }} - Cantidad: {{ p.cantidad }}</li>
+    {% endfor %}
+</ul>
+
+<h3>CSV</h3>
+<ul>
+    {% for p in csv %}
+    <li>{{ p.nombre }} - {{ p.descripcion }} - Precio: {{ p.precio }} - Cantidad: {{ p.cantidad }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+ 

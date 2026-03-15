@@ -123,7 +123,7 @@ def datos():
 # Ruta de prueba de conexión a la base de datos
 @app.route('/db_test')
 def db_test():
-    print("➡️ Entrando a /db_test")
+    print(" Entrando a /db_test")
     try:
         conn = get_db_connection()
         if conn is None:

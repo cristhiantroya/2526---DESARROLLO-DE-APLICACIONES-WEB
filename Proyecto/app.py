@@ -7,6 +7,7 @@ from inventario.inventario_persistencia import (
     guardar_json, leer_json,
     guardar_txt, leer_txt
 )
+from conexion.conexion import get_db_connection
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'clave_secreta_segura'
@@ -117,6 +118,29 @@ def datos():
     datos_json = leer_json()
     datos_csv = leer_csv()
     return render_template("datos.html", txt=datos_txt, json=datos_json, csv=datos_csv)
+
+
+# Ruta de prueba de conexión a la base de datos
+@app.route('/db_test')
+def db_test():
+    print("➡️ Entrando a /db_test")
+    try:
+        conn = get_db_connection()
+        if conn is None:
+            return "No se pudo conectar a la base de datos"
+
+        cursor = conn.cursor()
+        cursor.execute("SELECT 1")
+        result = cursor.fetchone()
+        conn.close()
+
+        if result and result[0] == 1:
+            return "Conexión a la base de datos exitosa"
+        else:
+            return "Error en la consulta a la base de datos"
+    except Exception as e:
+        return f"Error al conectar a la base de datos: {e}"
+
 
 
 if __name__ == '__main__':

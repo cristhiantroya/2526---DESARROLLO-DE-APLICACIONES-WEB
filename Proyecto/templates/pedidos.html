@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Pedidos{% endblock %}
+{% block content %}
+<h2>Listado de Pedidos</h2>
+
+<table border="1">
+    <tr>
+        <th>ID Pedido</th><th>ID Cliente</th><th>Fecha</th><th>Total</th><th>Acciones</th>
+    </tr>
+    {% for p in pedidos %}
+    <tr>
+        <td>{{ p.id_pedido }}</td>
+        <td>{{ p.id_cliente }}</td>
+        <td>{{ p.fecha }}</td>
+        <td>{{ p.total }}</td>
+        <td>
+            <a href="{{ url_for('eliminar_pedido', id_pedido=p.id_pedido) }}">Eliminar</a> |
+            <a href="{{ url_for('actualizar_pedido', id_pedido=p.id_pedido) }}">Actualizar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

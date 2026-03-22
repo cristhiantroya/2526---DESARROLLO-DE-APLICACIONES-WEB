@@ -1,23 +1,57 @@
 {% extends 'base.html' %}
 
-{% block title %}Agregar Producto{% endblock %}
+{% block title %}
+    {% if producto %}
+        Actualizar Producto
+    {% else %}
+        Agregar Producto
+    {% endif %}
+{% endblock %}
 
 {% block content %}
-<h2>Agregar Producto</h2>
+<h2>
+    {% if producto %}
+        Actualizar Producto
+    {% else %}
+        Agregar Producto
+    {% endif %}
+</h2>
+
 <form method="POST">
     {{ form.hidden_tag() }}
     <p>
-        {{ form.nombre.label }}<br>
-        {{ form.nombre(size=30) }}
+        {{ form.marca.label }}<br>
+        {% if producto %}
+            {{ form.marca(value=producto.marca, size=30) }}
+        {% else %}
+            {{ form.marca(size=30) }}
+        {% endif %}
     </p>
     <p>
-        {{ form.cantidad.label }}<br>
-        {{ form.cantidad() }}
+        {{ form.modelo.label }}<br>
+        {% if producto %}
+            {{ form.modelo(value=producto.modelo, size=30) }}
+        {% else %}
+            {{ form.modelo(size=30) }}
+        {% endif %}
     </p>
     <p>
         {{ form.precio.label }}<br>
-        {{ form.precio() }}
+        {% if producto %}
+            {{ form.precio(value=producto.precio) }}
+        {% else %}
+            {{ form.precio() }}
+        {% endif %}
+    </p>
+    <p>
+        {{ form.stock.label }}<br>
+        {% if producto %}
+            {{ form.stock(value=producto.stock) }}
+        {% else %}
+            {{ form.stock() }}
+        {% endif %}
     </p>
     <p>{{ form.submit() }}</p>
 </form>
 {% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Detalle de Pedidos{% endblock %}
+{% block content %}
+<h2>Detalle de Pedidos</h2>
+
+<table border="1">
+    <tr>
+        <th>ID Detalle</th><th>ID Pedido</th><th>ID Producto</th><th>Cantidad</th><th>Subtotal</th><th>Acciones</th>
+    </tr>
+    {% for d in detalles %}
+    <tr>
+        <td>{{ d.id_detalle }}</td>
+        <td>{{ d.id_pedido }}</td>
+        <td>{{ d.id_producto }}</td>
+        <td>{{ d.cantidad }}</td>
+        <td>{{ d.subtotal }}</td>
+        <td>
+            <a href="{{ url_for('eliminar_detalle', id_detalle=d.id_detalle) }}">Eliminar</a> |
+            <a href="{{ url_for('actualizar_detalle', id_detalle=d.id_detalle) }}">Actualizar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

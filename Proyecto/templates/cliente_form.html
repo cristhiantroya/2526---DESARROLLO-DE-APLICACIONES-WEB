@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if cliente %}
+        Actualizar Cliente
+    {% else %}
+        Agregar Cliente
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<h2>
+    {% if cliente %}
+        Actualizar Cliente
+    {% else %}
+        Agregar Cliente
+    {% endif %}
+</h2>
+
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" name="nombre" class="form-control" value="{{ cliente.nombre if cliente else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" name="mail" class="form-control" value="{{ cliente.mail if cliente else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Teléfono</label>
+        <input type="text" name="telefono" class="form-control" value="{{ cliente.telefono if cliente else '' }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{{ url_for('clientes_view') }}" class="btn btn-secondary ms-2">Cancelar</a>
+</form>
+{% endblock %}

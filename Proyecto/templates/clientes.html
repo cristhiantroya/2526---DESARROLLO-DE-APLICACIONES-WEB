@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}Clientes{% endblock %}
 {% block content %}
-<h2>Listado de Clientes</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Listado de Clientes</h2>
+    <div>
+        <a href="{{ url_for('agregar_cliente') }}" class="btn btn-success me-2"><i class="bi bi-plus-circle me-1"></i>Agregar Cliente</a>
+        <a href="{{ url_for('reporte_clientes_pdf') }}" class="btn btn-secondary"><i class="bi bi-file-earmark-pdf me-1"></i>Generar PDF</a>
+    </div>
+</div>
 
-<table border="1">
+<form method="GET" action="{{ url_for('clientes_view') }}" class="row g-3 mb-3">
+    <div class="col-md-6">
+        <input type="text" name="q" class="form-control" placeholder="Buscar por nombre" value="{{ q }}">
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
     <tr>
         <th>ID</th><th>Nombre</th><th>Mail</th><th>Teléfono</th><th>Acciones</th>
     </tr>
@@ -20,4 +36,24 @@
     </tr>
     {% endfor %}
 </table>
+
+<nav aria-label="Clientes pagination">
+    <ul class="pagination">
+        {% if page > 1 %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('clientes_view', q=q, page=page-1) }}">Anterior</a></li>
+        {% else %}
+            <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+        {% endif %}
+
+        {% for p in range(1, total_pages + 1) %}
+            <li class="page-item {% if p == page %}active{% endif %}"><a class="page-link" href="{{ url_for('clientes_view', q=q, page=p) }}">{{ p }}</a></li>
+        {% endfor %}
+
+        {% if page < total_pages %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('clientes_view', q=q, page=page+1) }}">Siguiente</a></li>
+        {% else %}
+            <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+        {% endif %}
+    </ul>
+</nav>
 {% endblock %}

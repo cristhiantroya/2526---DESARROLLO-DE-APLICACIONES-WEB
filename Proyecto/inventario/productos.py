@@ -47,6 +47,20 @@ def actualizar_producto(id_producto, marca, modelo, precio, stock):
     conn.commit()
     conn.close()
 
+def obtener_producto(id_producto):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "SELECT id_producto, marca, modelo, precio, stock FROM productos WHERE id_producto = %s",
+        (id_producto,)
+    )
+    fila = cursor.fetchone()
+    conn.close()
+    if fila:
+        return Producto(*fila)
+    return None
+
+
 def buscar_productos(marca):
     conn = get_db_connection()
     cursor = conn.cursor()

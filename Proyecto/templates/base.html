@@ -33,16 +33,19 @@
                                 <i class="bi bi-gear me-1"></i>Gestión
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{{ url_for('productos_view') }}"><i class="bi bi-box-seam me-2"></i>Productos</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('productos_view') }}"><i class="bi bi-phone me-2"></i>Productos</a></li>
                                 <li><a class="dropdown-item" href="{{ url_for('agregar_producto') }}"><i class="bi bi-plus-circle me-2"></i>Agregar Producto</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('reporte_productos_pdf') }}"><i class="bi bi-file-earmark-pdf me-2"></i>Reporte Productos</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ url_for('clientes_view') }}"><i class="bi bi-people me-2"></i>Clientes</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('clientes_view') }}"><i class="bi bi-people-fill me-2"></i>Clientes</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('reporte_clientes_pdf') }}"><i class="bi bi-file-earmark-pdf me-2"></i>Reporte Clientes</a></li>
                                 <li><a class="dropdown-item" href="{{ url_for('agregar_cliente') }}"><i class="bi bi-person-plus me-2"></i>Agregar Cliente</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ url_for('pedidos_view') }}"><i class="bi bi-receipt me-2"></i>Pedidos</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('pedidos_view') }}"><i class="bi bi-clipboard-check me-2"></i>Pedidos</a></li>
                                 <li><a class="dropdown-item" href="{{ url_for('agregar_pedido') }}"><i class="bi bi-plus-circle me-2"></i>Agregar Pedido</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('reporte_pedidos_pdf') }}"><i class="bi bi-file-earmark-pdf me-2"></i>Reporte Pedidos</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ url_for('usuarios_view') }}"><i class="bi bi-person-circle me-2"></i>Usuarios</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('usuarios_view') }}"><i class="bi bi-people-circle me-2"></i>Usuarios</a></li>
                             </ul>
                         </li>
                         

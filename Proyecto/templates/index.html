@@ -1,8 +1,405 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>TECH STORE</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- Bootstrap for navigation -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-dim": "#3944ab",
+                        "outline-variant": "#afacac",
+                        "on-secondary-container": "#303ba2",
+                        "surface-container": "#eae7e7",
+                        "error-dim": "#9f0519",
+                        "surface-tint": "#0055c5",
+                        "inverse-on-surface": "#9e9c9c",
+                        "tertiary-fixed": "#f797f0",
+                        "surface-variant": "#dfdcdc",
+                        "on-tertiary": "#ffeef8",
+                        "on-error-container": "#570008",
+                        "on-tertiary-fixed": "#400042",
+                        "on-secondary-fixed": "#19248e",
+                        "inverse-primary": "#568dff",
+                        "on-surface-variant": "#5c5b5b",
+                        "on-primary-fixed": "#000000",
+                        "on-tertiary-fixed-variant": "#6c1a6c",
+                        "on-error": "#ffefee",
+                        "surface-bright": "#f9f6f5",
+                        "secondary": "#4551b7",
+                        "surface-container-highest": "#dfdcdc",
+                        "secondary-fixed-dim": "#babfff",
+                        "inverse-surface": "#0e0e0e",
+                        "on-surface": "#2f2e2e",
+                        "primary-fixed-dim": "#5b90ff",
+                        "primary": "#0055c5",
+                        "surface-dim": "#d6d4d3",
+                        "on-primary": "#f0f2ff",
+                        "on-secondary": "#f3f1ff",
+                        "surface-container-high": "#e5e2e1",
+                        "on-primary-fixed-variant": "#002966",
+                        "primary-container": "#739eff",
+                        "background": "#f9f6f5",
+                        "tertiary": "#8d3a8b",
+                        "error": "#b31b25",
+                        "secondary-container": "#cbceff",
+                        "on-background": "#2f2e2e",
+                        "surface-container-low": "#f3f0ef",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#739eff",
+                        "tertiary-fixed-dim": "#e88ae1",
+                        "tertiary-dim": "#7f2d7e",
+                        "on-secondary-fixed-variant": "#3a45ac",
+                        "primary-dim": "#004aad",
+                        "secondary-fixed": "#cbceff",
+                        "on-tertiary-container": "#610e63",
+                        "outline": "#787676",
+                        "error-container": "#fb5151",
+                        "tertiary-container": "#f797f0",
+                        "surface": "#f9f6f5",
+                        "on-primary-container": "#002053"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .kinetic-shadow {
+            box-shadow: 0 20px 40px rgba(47, 46, 46, 0.06);
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
 
-{% block title %}Inicio{% endblock %}
+    <!-- Bootstrap Navigation Bar -->
+    {% if current_user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('inicio') }}">
+                <i class="bi bi-phone-fill me-2"></i><strong>Tienda de Celulares</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('inicio') }}"><i class="bi bi-house-door me-1"></i>Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}"><i class="bi bi-info-circle me-1"></i>Acerca de</a>
+                    </li>
 
-{% block content %}
-<h2>Bienvenido a la página de inicio</h2>
-<p>Este es el contenido dinámico de la página principal.</p>
-{% endblock %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-gear me-1"></i>Gestión
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{ url_for('productos_view') }}"><i class="bi bi-box-seam me-2"></i>Productos</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('agregar_producto') }}"><i class="bi bi-plus-circle me-2"></i>Agregar Producto</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('reporte_productos_pdf') }}"><i class="bi bi-file-earmark-pdf me-2"></i>Reporte Productos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('clientes_view') }}"><i class="bi bi-people me-2"></i>Clientes</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('reporte_clientes_pdf') }}"><i class="bi bi-file-earmark-pdf me-2"></i>Reporte Clientes</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('agregar_cliente') }}"><i class="bi bi-person-plus me-2"></i>Agregar Cliente</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('pedidos_view') }}"><i class="bi bi-receipt me-2"></i>Pedidos</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('agregar_pedido') }}"><i class="bi bi-plus-circle me-2"></i>Agregar Pedido</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('reporte_pedidos_pdf') }}"><i class="bi bi-file-earmark-pdf me-2"></i>Reporte Pedidos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('usuarios_view') }}"><i class="bi bi-person-circle me-2"></i>Usuarios</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle me-1"></i>{{ current_user.nombre }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><span class="dropdown-item-text"><i class="bi bi-envelope me-1"></i>{{ current_user.email }}</span></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout') }}"><i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+
+    <!-- Flash Messages -->
+    {% if current_user.is_authenticated %}
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'danger' else 'success' if category == 'success' else 'info' if category == 'info' else 'warning' }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    {% endif %}
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 bg-[#f9f6f5]/70 backdrop-blur-xl flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+        <div class="text-2xl font-black text-[#0e0e0e] font-headline tracking-tight">Tech Store</div>
+        <div class="hidden md:flex items-center gap-6">
+            <a class="font-headline font-bold tracking-tight text-[#0055c5] border-b-2 border-[#0055c5] pb-1 transition-all duration-300" href="{{ url_for('inicio') }}">Inicio</a>
+            <a class="font-headline font-bold tracking-tight text-[#2f2e2e] hover:text-[#0055c5] transition-all duration-300" href="{{ url_for('about') }}">Acerca de</a>
+
+            {% if current_user.is_authenticated %}
+            <div class="dropdown">
+                <button class="font-headline font-bold tracking-tight text-[#2f2e2e] hover:text-[#0055c5] transition-all duration-300 dropdown-toggle btn btn-link" type="button" id="gestionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Gestión
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="gestionDropdown">
+                    <li><a class="dropdown-item" href="{{ url_for('productos_view') }}">Productos</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('agregar_producto') }}">Agregar Producto</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('reporte_productos_pdf') }}">Reporte Productos</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('clientes_view') }}">Clientes</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('agregar_cliente') }}">Agregar Cliente</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('reporte_clientes_pdf') }}">Reporte Clientes</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('pedidos_view') }}">Pedidos</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('agregar_pedido') }}">Agregar Pedido</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('reporte_pedidos_pdf') }}">Reporte Pedidos</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('usuarios_view') }}">Usuarios</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown">
+                <button class="font-headline font-bold tracking-tight text-[#2f2e2e] hover:text-[#0055c5] transition-all duration-300 dropdown-toggle btn btn-link" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ current_user.nombre }}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+            {% else %}
+                <a class="font-headline font-bold tracking-tight text-[#2f2e2e] hover:text-[#0055c5] transition-all duration-300" href="{{ url_for('login') }}">Iniciar Sesión</a>
+                <a class="font-headline font-bold tracking-tight text-[#2f2e2e] hover:text-[#0055c5] transition-all duration-300" href="{{ url_for('registro') }}">Registrarse</a>
+            {% endif %}
+        </div>
+        <div class="flex items-center gap-6">
+            <button class="transition-all duration-300 hover:opacity-80 active:scale-95 text-[#2f2e2e]">
+                <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+            </button>
+            <button class="transition-all duration-300 hover:opacity-80 active:scale-95 text-[#2f2e2e]">
+                <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+            </button>
+        </div>
+    </nav>
+    <main class="pt-24 pb-32">
+        <!-- Hero Section: iPhone 15 Pro -->
+        <section class="relative px-8 mb-24 overflow-hidden">
+            <div class="max-w-7xl mx-auto bg-surface-container-lowest rounded-[2.5rem] p-12 md:p-24 flex flex-col md:flex-row items-center gap-12 relative">
+                <div class="flex-1 z-10">
+                    <span class="inline-block px-4 py-1 rounded-full bg-primary-container/20 text-primary font-bold text-xs tracking-widest uppercase mb-6">New Era</span>
+                    <h1 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter text-inverse-surface leading-none mb-6">
+                        Tecnología en tus manos.<br/>
+                    </h1>
+                    <p class="text-on-surface-variant text-lg max-w-md mb-10 leading-relaxed">
+                        Los mejores equipos, ofertas exclusivas y servicio 100% garantizado.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="{{ url_for('productos_view') }}" class="bg-primary text-on-primary px-8 py-4 rounded-full font-bold text-sm tracking-wide transition-all hover:opacity-90 active:scale-95 bg-gradient-to-br from-primary to-primary-container">
+                            Ver Catálogo
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 relative">
+                    <img alt="Celulares Premium" class="w-full h-auto object-cover transform scale-110 md:translate-x-12 hover:rotate-2 transition-transform duration-700" src="https://images.pexels.com/photos/9929679/pexels-photo-9929679.jpeg"/>
+                </div>
+            </div>
+        </section>
+        <!-- Category Bento Grid -->
+        <section class="px-8 mb-32">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 gap-6">
+                    <!-- Productos -->
+                    <div class="group relative overflow-hidden bg-surface-container-low rounded-[2rem] p-10 h-[400px] flex items-end">
+                        <div class="z-10 relative">
+                            <h3 class="font-headline text-3xl font-bold text-inverse-surface mb-2">Nuestros Productos</h3>
+                            <p class="text-on-surface-variant mb-6">Explora el catálogo completo de celulares.</p>
+                            <a href="{{ url_for('productos_view') }}" class="text-primary font-bold flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                                Ver Productos <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+                        </div>
+                        <img alt="Productos" class="absolute top-0 right-0 w-2/3 h-full object-contain p-8 group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://images.pexels.com/photos/21854468/pexels-photo-21854468.jpeg"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Bestsellers Section -->
+        <section class="px-8 mb-32">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-between items-end mb-12">
+                    <div>
+                        <h2 class="font-headline text-4xl font-bold tracking-tight text-inverse-surface">Productos Destacados</h2>
+                        <p class="text-on-surface-variant mt-2">Los más vendidos y recomendados.</p>
+                    </div>
+                    <a class="text-primary font-bold flex items-center gap-1 hover:underline" href="{{ url_for('productos_view') }}">
+                        Ver Todos <span class="material-symbols-outlined text-sm">open_in_new</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {% for p in destacados %}
+<div class="group">
+    <div class="aspect-[4/5] bg-surface-container-lowest rounded-xl overflow-hidden mb-6 relative flex items-center justify-center p-8 transition-all group-hover:bg-white kinetic-shadow">
+        
+        {% if 'A 56' in p.modelo %}
+            <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a56-1.jpg" alt="{{ p.modelo }}" class="h-full object-contain group-hover:scale-110 transition-transform duration-500">
+        {% elif '17 Pro Max' in p.modelo %}
+            <img src="https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-17-pro-max-1.jpg" alt="{{ p.modelo }}" class="h-full object-contain group-hover:scale-110 transition-transform duration-500">
+        {% elif 'GT 30 Pro' in p.modelo %}
+            <img src="https://fdn2.gsmarena.com/vv/pics/infinix/infinix-gt30-pro-1.jpg" alt="{{ p.modelo }}" class="h-full object-contain group-hover:scale-110 transition-transform duration-500">
+        {% elif '400 Pro' in p.modelo %}
+            <img src="https://fdn2.gsmarena.com/vv/pics/honor/honor-400-pro-2.jpg" alt="{{ p.modelo }}" class="h-full object-contain group-hover:scale-110 transition-transform duration-500">
+        {% elif 'G 85' in p.modelo %}
+            <img src="https://fdn2.gsmarena.com/vv/pics/motorola/motorola-moto-g85-1.jpg" alt="{{ p.modelo }}" class="h-full object-contain group-hover:scale-110 transition-transform duration-500">
+        {% elif 'S 26' in p.modelo %}
+            <img src="https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s26-ultra-1.jpg" alt="{{ p.modelo }}" class="h-full object-contain group-hover:scale-110 transition-transform duration-500">
+        {% else %}
+            <img src="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=600" alt="{{ p.modelo }}" class="h-full object-contain group-hover:scale-110 transition-transform duration-500">
+        {% endif %}
+        <button class="absolute bottom-4 right-4 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+            <span class="material-symbols-outlined">add</span>
+        </button>
+    </div>
+    <h4 class="font-headline font-bold text-lg text-inverse-surface">{{ p.marca }} {{ p.modelo }}</h4>
+    <p class="text-on-surface-variant text-sm mb-2">{{ p.stock }} unidades disponibles</p>
+    <p class="font-headline font-bold text-primary">${{ p.precio }}</p>
+</div>
+{% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- Featured Offers -->
+        <section class="px-8">
+            <div class="max-w-7xl mx-auto bg-primary text-on-primary rounded-[3rem] overflow-hidden flex flex-col md:flex-row">
+                <div class="flex-1 p-12 md:p-20">
+                    <h2 class="font-headline text-4xl md:text-5xl font-bold mb-6">Ofertas Destacadas</h2>
+                    <p class="text-on-primary/80 text-lg mb-10 max-w-md">Upgrade your digital arsenal today with exclusive seasonal discounts.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-6 p-4 rounded-2xl bg-white/10 backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-4xl">local_shipping</span>
+                            <div>
+                                <p class="font-bold">Envío Gratis</p>
+                                <p class="text-sm opacity-70">En compras superiores a $500</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6 p-4 rounded-2xl bg-white/10 backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-4xl">verified</span>
+                            <div>
+                                <p class="font-bold">Garantía Extendida</p>
+                                <p class="text-sm opacity-70">Hasta 2 años en equipos nuevos</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{ url_for('productos_view') }}" class="mt-12 bg-surface-bright text-primary px-10 py-4 rounded-full font-bold transition-all hover:scale-105 active:scale-95 inline-block">Ver Ofertas</a>
+                </div>
+                <div class="flex-1 min-h-[400px] relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary to-transparent z-10"></div>
+                    <img alt="Offers Background" class="w-full h-full object-cover" src="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=900"/>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-[#f3f0ef] dark:bg-[#0e0e0e] border-t border-[#afacac]/10 w-full py-12 px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            <div class="col-span-1 md:col-span-1">
+                <div class="font-manrope font-extrabold text-lg mb-6">Tech Store</div>
+                <p class="font-inter text-sm text-[#2f2e2e] dark:text-[#e5e2e1] opacity-70 leading-relaxed">Tienda de celulares premium.</p>
+            </div>
+            <div>
+                <h5 class="font-headline font-bold text-inverse-surface mb-6">Tienda</h5>
+                <ul class="space-y-4 font-inter text-sm text-[#2f2e2e] dark:text-[#e5e2e1]">
+                    <li><a class="opacity-70 hover:opacity-100 hover:text-[#0055c5] transition-colors" href="{{ url_for('productos_view') }}">Celulares</a></li>
+                    <li><a class="opacity-70 hover:opacity-100 hover:text-[#0055c5] transition-colors" href="#">Accesorios</a></li>
+                    <li><a class="opacity-70 hover:opacity-100 hover:text-[#0055c5] transition-colors" href="#">Reparaciones</a></li>
+                    <li><a class="opacity-70 hover:opacity-100 hover:text-[#0055c5] transition-colors" href="#">Soporte</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-headline font-bold text-inverse-surface mb-6">Cuenta</h5>
+                <ul class="space-y-4 font-inter text-sm text-[#2f2e2e] dark:text-[#e5e2e1]">
+                    <li><a class="opacity-70 hover:opacity-100 hover:text-[#0055c5] transition-colors" href="{{ url_for('login') }}">Iniciar Sesión</a></li>
+                    <li><a class="opacity-70 hover:opacity-100 hover:text-[#0055c5] transition-colors" href="{{ url_for('registro') }}">Registrarse</a></li>
+                    <li><a class="opacity-70 hover:opacity-100 hover:text-[#0055c5] transition-colors" href="{{ url_for('clientes_view') }}">Mi Perfil</a></li>
+                    <li><a class="opacity-70 hover:opacity-100 hover:text-[#0055c5] transition-colors" href="{{ url_for('pedidos_view') }}">Mis Pedidos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-headline font-bold text-inverse-surface mb-6">Contáctanos</h5>
+                <div class="flex gap-4 mb-6">
+                    <span class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center opacity-70 hover:opacity-100 cursor-pointer transition-opacity">
+                        <span class="material-symbols-outlined text-lg">share</span>
+                    </span>
+                    <span class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center opacity-70 hover:opacity-100 cursor-pointer transition-opacity">
+                        <span class="material-symbols-outlined text-lg">mail</span>
+                    </span>
+                </div>
+                <p class="font-inter text-xs text-[#2f2e2e] dark:text-[#e5e2e1] opacity-50">© 2026 Tech Store. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- BottomNavBar (Mobile Only) -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-6 py-4 pb-safe bg-[#f9f6f5]/80 backdrop-blur-2xl z-50 rounded-t-[2rem] border-t border-[#afacac]/15 shadow-[0_-20px_40px_rgba(47,46,46,0.06)]">
+        <a class="flex flex-col items-center justify-center bg-[#0055c5] text-white rounded-full p-3 transition-transform active:scale-90" href="{{ url_for('inicio') }}">
+            <span class="material-symbols-outlined" data-icon="home">home</span>
+            <span class="font-inter text-[10px] uppercase tracking-widest mt-1">Inicio</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[#2f2e2e] p-3 hover:bg-[#f3f0ef] transition-transform active:scale-90" href="{{ url_for('productos_view') }}">
+            <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+            <span class="font-inter text-[10px] uppercase tracking-widest mt-1">Productos</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[#2f2e2e] p-3 hover:bg-[#f3f0ef] transition-transform active:scale-90" href="{{ url_for('about') }}">
+            <span class="material-symbols-outlined" data-icon="info">info</span>
+            <span class="font-inter text-[10px] uppercase tracking-widest mt-1">Acerca de</span>
+        </a>
+        {% if current_user.is_authenticated %}
+        <a class="flex flex-col items-center justify-center text-[#2f2e2e] p-3 hover:bg-[#f3f0ef] transition-transform active:scale-90" href="{{ url_for('logout') }}">
+            <span class="material-symbols-outlined" data-icon="logout">logout</span>
+            <span class="font-inter text-[10px] uppercase tracking-widest mt-1">Salir</span>
+        </a>
+        {% else %}
+        <a class="flex flex-col items-center justify-center text-[#2f2e2e] p-3 hover:bg-[#f3f0ef] transition-transform active:scale-90" href="{{ url_for('login') }}">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="font-inter text-[10px] uppercase tracking-widest mt-1">Cuenta</span>
+        </a>
+        {% endif %}
+    </nav>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

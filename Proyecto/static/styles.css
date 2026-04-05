@@ -1,8 +1,53 @@
+/* --- SECCIÓN CORREGIDA DEL NAVBAR Y DROPDOWN --- */
+
+.navbar {
+    background-color: #0055c5 !important;
+}
+
+/* Color de los enlaces en estado normal */
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Hover para los enlaces de la barra principal (Azul oscuro) */
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover {
+    color: #d1e3ff !important; /* Un celeste claro para que se note el cambio */
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo sutil */
+}
+
+/* --- CORRECCIÓN ESPECÍFICA PARA EL SUBMENÚ (DROPDOWN) --- */
+
+/* Fondo del menú desplegable cuando está cerrado/abierto */
+.dropdown-menu {
+    background-color: #ffffff; 
+    border: 1px solid #ddd;
+}
+
+/* Color del texto del submenú en estado normal */
+.dropdown-item {
+    color: #2f2e2e !important; 
+}
+
+/* Color del texto y fondo cuando pasas el mouse por el submenú */
+.dropdown-item:hover {
+    color: #ffffff !important; /* Letra blanca */
+    background-color: #0055c5 !important; /* Fondo azul (el mismo de tu navbar) */
+    /* Esto evita el efecto de "rectángulo blanco sobre letras blancas" */
+}
+
+/* --- RESTO DEL CÓDIGO (TABLAS Y ESTRUCTURA) --- */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #f9f6f5;
+    color: #2f2e2e;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que ocupe el alto total */
 }
 
 header {
@@ -10,30 +55,6 @@ header {
     color: white;
     padding: 15px;
     text-align: center;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 28px;
-}
-
-nav {
-    margin-top: 10px;
-}
-
-nav a {
-    color: #ecf0f1;
-    text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: #1abc9c;
-}
-
-main {
-    padding: 20px;
 }
 
 table {
@@ -62,16 +83,8 @@ table tr:hover {
     background-color: #f1f1f1;
 }
 
-
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
-
 main {
-    flex: 1; /* ocupa todo el espacio disponible */
+    flex: 1;
     padding: 20px;
 }
 
@@ -80,5 +93,5 @@ footer {
     color: white;
     text-align: center;
     padding: 10px;
-    margin-top: auto; /* empuja el footer al final */
+    margin-top: auto;
 }

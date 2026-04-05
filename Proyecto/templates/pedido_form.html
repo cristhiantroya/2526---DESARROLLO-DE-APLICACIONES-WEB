@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if pedido %}
+        Actualizar Pedido
+    {% else %}
+        Agregar Pedido
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<h2>{% if pedido %}Actualizar Pedido{% else %}Agregar Pedido{% endif %}</h2>
+
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">ID Cliente</label>
+        <input type="number" name="id_cliente" class="form-control" value="{{ pedido.id_cliente if pedido else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Fecha</label>
+        <input type="date" name="fecha" class="form-control" value="{{ pedido.fecha if pedido else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Total</label>
+        <input type="number" step="0.01" name="total" class="form-control" value="{{ pedido.total if pedido else '' }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{{ url_for('pedidos_view') }}" class="btn btn-secondary ms-2">Cancelar</a>
+</form>
+{% endblock %}
